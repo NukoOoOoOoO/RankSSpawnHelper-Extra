@@ -5,6 +5,7 @@ using Dalamud.Interface;
 using Dalamud.Interface.Colors;
 using Dalamud.Interface.Utility;
 using Dalamud.Interface.Windowing;
+using Dalamud.Utility;
 using ImGuiNET;
 using RankSSpawnHelper.Features;
 
@@ -22,6 +23,7 @@ public class ConfigWindow : Window
     private string _searchText = string.Empty;
 
     private string _timeInput = string.Empty;
+    private string _etInput = string.Empty;
 
     public ConfigWindow() : base("S怪触发小助手-Ex##RankSSpawnHelperEx") => Flags = ImGuiWindowFlags.AlwaysAutoResize;
 
@@ -139,7 +141,24 @@ public class ConfigWindow : Window
         ImGui.Text($"目标艾欧泽亚时间: {Utils.TargetEorzeaTime.ToShortDateString()} {Utils.TargetEorzeaTime.ToLongTimeString()}");
         ImGui.NewLine();
 
-        ImGui.Text("在多久后定时(本地时间):");
+        ImGui.Text("ET定时");
+        ImGui.SameLine();
+        ImGui.TextColored(ImGuiColors.DalamudGrey, "(?)");
+        if (ImGui.IsItemHovered())
+            ImGui.SetTooltip("该功能会直接使用玩家当前位置和玩家当前目标名字以及定的et喊话，请注意不要误触");
+        ImGui.InputTextWithHint("##etInputYes", "输入的数字即为发出去的ET", ref _etInput, 32);
+        ImGui.SameLine();
+        if (ImGui.Button("发送"))
+        {
+            if (_etInput == string.Empty)
+            {
+                DalamudApi.ChatGui.PrintError("未输入ET");
+            }
+            else Utils.PrintSetTimeMessage(false, false, etSet: _etInput);
+        }
+        ImGui.NewLine();
+
+        ImGui.Text("在多久后开怪(本地时间):");
         ImGui.InputTextWithHint("##timeInputYes", "格式: 分钟:秒 如00:24, 00:01", ref _timeInput, 32);
         ImGui.SameLine();
         if (ImGui.Button("确定"))

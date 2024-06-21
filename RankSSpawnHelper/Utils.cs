@@ -177,8 +177,16 @@ internal static class Utils
         return payload;
     }
 
-    public static unsafe void PrintSetTimeMessage(bool preview = false, bool yell = false)
+    public static unsafe void PrintSetTimeMessage(bool preview = false, bool yell = false, string etSet = null)
     {
+        if (etSet != null)
+        {
+            string message = "在<pos>发现了<t>，预定于ET" + etSet + "开打，请勿脸开抢开跟开";
+            ExecuteCommand($"/sh {message}");
+            if (yell) ExecuteCommand($"/yell {message}");
+            return;
+        }
+
         if (preview && DalamudApi.ClientState.LocalPlayer == null)
             return;
 
