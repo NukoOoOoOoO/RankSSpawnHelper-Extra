@@ -53,7 +53,7 @@ internal class SummonMinion : IDisposable
 
             foreach (var companion in unlockedCompanions)
             {
-                PluginLog.Debug($"{companion.Singular.RawString}");
+                DalamudApi.PluginLog.Debug($"{companion.Singular.RawString}");
                 _unlockedMinions.Add(new(companion.RowId, companion.Singular.RawString));
             }
         });

@@ -231,7 +231,7 @@ internal static unsafe class ClickLib
 
     private static ReceiveEventDelegate GetReceiveEvent(AtkEventListener* listener)
     {
-        var receiveEventAddress = new IntPtr(listener->vfunc[2]);
+        var receiveEventAddress = new IntPtr(((nint*)listener->VirtualTable)[2]);
         return Marshal.GetDelegateForFunctionPointer<ReceiveEventDelegate>(receiveEventAddress)!;
     }
 
@@ -241,7 +241,7 @@ internal static unsafe class ClickLib
         if (atkValues == null) return;
         try
         {
-            unitBase->FireCallback(values.Length, atkValues);
+            unitBase->FireCallback((uint)values.Length, atkValues);
         }
         finally
         {

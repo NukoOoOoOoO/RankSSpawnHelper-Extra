@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<LangVersion>10</LangVersion>
-		<Version>1.0.0.15</Version>
+		<Version>1.0.0.17</Version>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -20,11 +20,11 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<DalamudLibPath>C:\XivLauncherCN\XIVLauncherCN\Roaming\addon\Hooks\dev\</DalamudLibPath>
+		<DalamudLibPath>F:\XivLauncherCn\XIVLauncherCN\Roaming\addon\Hooks\dev\</DalamudLibPath>
 	</PropertyGroup>
 		
 	<ItemGroup>
-		<PackageReference Include="DalamudPackager" Version="2.1.12" />
+		<PackageReference Include="DalamudPackager" Version="2.1.13" />
 		<PackageReference Include="Reloaded.Memory" Version="2.0.27" />
 	</ItemGroup>
 

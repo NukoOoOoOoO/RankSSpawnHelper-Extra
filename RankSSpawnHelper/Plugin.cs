@@ -10,8 +10,7 @@ public class Plugin : IDalamudPlugin
 {
     private readonly WindowSystem _windowSystem;
 
-    public Plugin(
-        [RequiredVersion("1.0")] DalamudPluginInterface pluginInterface)
+    public Plugin(IDalamudPluginInterface pluginInterface)
     {
         pluginInterface.Create<DalamudApi>();
         Utils.Initialize();

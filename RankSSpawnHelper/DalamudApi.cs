@@ -24,7 +24,7 @@ internal class DalamudApi
     internal static JournalStuff Journal { get; set; } = null!;
     internal static SummonMinion SummonMinion { get; set; } = null!;
 
-    [PluginService] internal static DalamudPluginInterface Interface { get; private set; } = null!;
+    [PluginService] internal static IDalamudPluginInterface Interface { get; private set; } = null!;
 
     [PluginService] internal static IChatGui ChatGui { get; private set; } = null!;
 
@@ -48,4 +48,5 @@ internal class DalamudApi
 
     [PluginService] internal static IFramework Framework { get; set; } = null!;
     [PluginService] internal static IAddonLifecycle AddonLifecycle { get; set; } = null!;
+    [PluginService] internal static IPluginLog PluginLog { get; set; } = null!;
 }

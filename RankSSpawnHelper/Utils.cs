@@ -79,7 +79,7 @@ internal static class Utils
         var playSoundAddress = DalamudApi.SigScanner.ScanText("E8 ?? ?? ?? ?? 4D 39 BE");
         _playSound = Marshal.GetDelegateForFunctionPointer<PlaySound>(playSoundAddress);
 
-        _uiModule = Framework.Instance()->GetUiModule();
+        _uiModule = Framework.Instance()->GetUIModule();
     }
 
     public static unsafe void ExecuteCommand(string cmd)
@@ -126,7 +126,7 @@ internal static class Utils
         {
             const double eorzeaMultiplier = 3600D / 175D;
 
-            var epochTicks = DateTimeOffset.FromUnixTimeSeconds(Framework.Instance()->ServerTime).AddMinutes(minutes).AddSeconds(seconds).ToUniversalTime().Ticks - new DateTime(1970, 1, 1).Ticks;
+            var epochTicks = DateTimeOffset.FromUnixTimeSeconds(Framework.GetServerTime()).AddMinutes(minutes).AddSeconds(seconds).ToUniversalTime().Ticks - new DateTime(1970, 1, 1).Ticks;
 
             var eorzeaTicks = (long)Math.Round(epochTicks * eorzeaMultiplier);
 
@@ -135,7 +135,7 @@ internal static class Utils
         }
         catch (Exception e)
         {
-            PluginLog.Debug(e, "Exception happened when converting local time to eorzea time");
+            DalamudApi.PluginLog.Debug(e, "Exception happened when converting local time to eorzea time");
             return new(0);
         }
     }
@@ -179,6 +179,9 @@ internal static class Utils
 
     public static unsafe void PrintSetTimeMessage(bool preview = false, bool yell = false)
     {
+        DalamudApi.ChatGui.PrintError("[ET喊话] 暂时停用功能");
+        return;
+
         if (preview && DalamudApi.ClientState.LocalPlayer == null)
             return;
 

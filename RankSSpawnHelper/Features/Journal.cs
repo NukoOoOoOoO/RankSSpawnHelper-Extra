@@ -61,7 +61,7 @@ public class JournalStuff : IDisposable
         if (declineButton == null)
             return;
 
-        if (!declineButton->AtkComponentBase.AtkResNode->IsVisible)
+        if (!declineButton->AtkComponentBase.AtkResNode->IsVisible())
             return;
 
         var text = Marshal.PtrToStringUTF8((nint)initButton->ButtonTextNode->GetText());
