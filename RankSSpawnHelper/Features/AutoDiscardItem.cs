@@ -44,7 +44,6 @@ public class AutoDiscardItem : IDisposable
         _openInventoryContextHook = DalamudApi.GameInteropProvider.HookFromSignature<OpenInventoryContext>("83 B9 ?? ?? ?? ?? ?? 7E ?? 39 91", hk_OpenInventoryContext);
         _openInventoryContextHook.Enable();
 
-
         ItemInfos.AddRange(DalamudApi.DataManager.GetExcelSheet<Item>().Where(
                                                                               i => !string.IsNullOrEmpty(i.Name) &&
                                                                                    (

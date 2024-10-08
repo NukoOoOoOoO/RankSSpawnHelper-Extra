@@ -17,7 +17,7 @@ public class LeaveDuty : IDisposable
     {
         try
         {
-            _leaveDungeon = Marshal.GetDelegateForFunctionPointer<LeaveDutyDelegate>(DalamudApi.SigScanner.ScanText("40 53 48 83 EC ?? 48 8B 05 ?? ?? ?? ?? 0F B6 D9"));
+            _leaveDungeon = Marshal.GetDelegateForFunctionPointer<LeaveDutyDelegate>(DalamudApi.SigScanner.ScanText("40 53 48 83 EC ?? 48 8B 05 ?? ?? ?? ?? 0F B6 D9 48 85 C0"));
             _canLeaveDutyDelegate = Marshal.GetDelegateForFunctionPointer<CanLeaveDutyDelegate>(DalamudApi.SigScanner.ScanText("48 83 EC ?? 48 8B 05 ?? ?? ?? ?? 48 85 C0 74 ?? 83 B8 ?? ?? ?? ?? ?? 75 ?? E8"));
             DalamudApi.Framework.Update += OnFrameworkUpdate;
         }
